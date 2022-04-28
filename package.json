@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@types/redux-logger": "^3.0.9",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
