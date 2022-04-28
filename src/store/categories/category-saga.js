@@ -4,7 +4,7 @@ import { getCollectionAndDocuments } from '../../utils/firebase/firebase';
 
 import { fetchCategoriesSuccess, fetchCategoriesFailure } from './category-actions';
 
-import CATEGORIES_ACTION_TYPES from './category-types';
+import { CATEGORIES_ACTION_TYPES } from './category-types';
 
 export function* fetchCategoriesStartAsync() {
   try {
@@ -23,5 +23,5 @@ export function* onFetchCategories() {
 }
 
 export function* categoriesSaga() {
-  yield all([call(onFetchCategories)]); // sagas will not continue until all finishes.
+  yield all([call(onFetchCategories)]);
 };
