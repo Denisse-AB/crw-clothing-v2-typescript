@@ -1,7 +1,7 @@
 import { Fragment, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
+// declaration for svs in custom.d.ts
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
 import { selectCurrentUser } from "../../store/user/user-selector";

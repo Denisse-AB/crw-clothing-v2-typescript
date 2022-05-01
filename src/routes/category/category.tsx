@@ -4,15 +4,17 @@ import { useParams } from 'react-router-dom';
 import ProductCard from '../../components/product-card/product-card';
 import Spinner from '../../components/spinner/spinner';
 import { selectCategoriesIsLoading, selectCategoriesMap } from '../../store/categories/category-selector';
-// import { CategoriesContext } from '../../context/categories-context';
 
 import './category.scss';
 
+type CategoryRouteParams = {
+  category: string
+}
+
 const Category = () => {
-  const { category } = useParams();
+  const { category } = useParams<keyof CategoryRouteParams>() as CategoryRouteParams;
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);
-  // const { categoriesMap } = useContext(CategoriesContext);
   const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {

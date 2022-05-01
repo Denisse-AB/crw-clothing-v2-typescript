@@ -18,11 +18,7 @@ ReactDOM.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          {/* <UserProvider> */}
-          {/* <CartProvider> */}
-            <App />
-          {/* </CartProvider> */}
-          {/* </UserProvider> */}
+          <App />
         </BrowserRouter>
       </PersistGate>
     </Provider>
