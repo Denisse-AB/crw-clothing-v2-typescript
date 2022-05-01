@@ -16,7 +16,7 @@ const App = () => {
   useEffect(() => {
     dispatch(checkUserSession());
   }, []);
-
+  // TODO: auth guard stopping sign in and up
   return (
     <Routes>
       <Route path='/' element={<Navigation />}>
