@@ -1,14 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { checkUserSession } from './store/user/user-actions';
 
-import Home from './routes/home';
-import Navigation from './routes/navigation/navigation';
-import CheckoutPage from './routes/checkout/checkout';
-import SignInUp from './routes/sign-in-up/signInUp';
-import Shop from './routes/shop/shop';
+import Spinner from "./components/spinner/spinner";
+
+const Home = lazy(() => import('./routes/home'));
+const Navigation = lazy(() => import('./routes/navigation/navigation'));
+const CheckoutPage = lazy(() => import('./routes/checkout/checkout'));
+const SignInUp = lazy(() => import('./routes/sign-in-up/signInUp'));
+const Shop = lazy(() => import('./routes/shop/shop'));
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,14 +21,16 @@ const App = () => {
   }, []);
   // TODO: auth guard stopping sign in and up
   return (
-    <Routes>
-      <Route path='/' element={<Navigation />}>
-        <Route index element={<Home />} />
-        <Route path='shop/*' element={<Shop />} />
-        <Route path='sign-in' element={<SignInUp />} />
-        <Route path='checkout' element={<CheckoutPage />} />
-      </Route>
-    </Routes>
+    <Suspense fallback={<Spinner />}>
+      <Routes>
+        <Route path='/' element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path='shop/*' element={<Shop />} />
+          <Route path='sign-in' element={<SignInUp />} />
+          <Route path='checkout' element={<CheckoutPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   )
 };
 
