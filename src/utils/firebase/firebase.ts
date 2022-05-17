@@ -21,7 +21,6 @@ import {
   getDocs,
   QueryDocumentSnapshot
 } from 'firebase/firestore';
-import { type } from 'os';
 import { Category } from '../../store/categories/category-types';
 
 const firebaseConfig = {
