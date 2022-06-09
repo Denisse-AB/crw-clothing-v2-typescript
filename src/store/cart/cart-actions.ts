@@ -2,6 +2,7 @@ import { createAction, withMatcher, ActionWithPayload } from '../../utils/reduce
 import { CategoryItem } from '../categories/category-types';
 import { CART_ACTION_TYPES, CartItem } from './cart-types';
 
+// Helper functions
 const addCartItem = (cartItems: CartItem[], productToAdd: CategoryItem): CartItem[] => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
@@ -40,19 +41,27 @@ const removeCartItem = (cartItems: CartItem[], cartItemToRemove: CartItem): Cart
 const clearCartItem = (cartItems: CartItem[], cartItemToClear: CartItem): CartItem[] =>
   cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
 
+// Action Types
 export type setIsCartHidden = ActionWithPayload<CART_ACTION_TYPES.SET_IS_CART_HIDDEN, boolean>
 
 export type setCartItems = ActionWithPayload<CART_ACTION_TYPES.SET_CART_ITEMS, CartItem[]>
 
-// Actions
+export type setIsClientSecret = ActionWithPayload<CART_ACTION_TYPES.SET_CLIENT_SECRET, any | null>
+
+// Action Creators
 export const setIsHidden = withMatcher((boolean: boolean):
   setIsCartHidden =>
     createAction(CART_ACTION_TYPES.SET_IS_CART_HIDDEN, boolean));
+
+export const setIsClientSecret = withMatcher((any: any):
+  setIsClientSecret =>
+    createAction(CART_ACTION_TYPES.SET_CLIENT_SECRET, any));
 
 export const setCartItems = withMatcher((cartItems: CartItem[]):
   setCartItems =>
     createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems))
 
+// Actions
 export const addItemToCart = (cartItems: CartItem[], productToAdd: CategoryItem) => {
   const newCartItems = addCartItem(cartItems, productToAdd);
   return setCartItems(newCartItems);
@@ -66,4 +75,8 @@ export const removeItemFromCart = (cartItems: CartItem[], cartItemToRemove: Cart
 export const clearItemFromCart = (cartItems: CartItem[], cartItemToClear: CartItem) => {
   const newCartItems = clearCartItem(cartItems, cartItemToClear);
   return setCartItems(newCartItems);
+};
+
+export const stripeSecretAction = (token: string | null) => {
+  return setIsClientSecret(token);
 };

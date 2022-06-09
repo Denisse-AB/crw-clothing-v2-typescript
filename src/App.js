@@ -9,9 +9,10 @@ import { selectCurrentUser } from "./store/user/user-selector";
 
 const Home = lazy(() => import('./routes/home'));
 const Navigation = lazy(() => import('./routes/navigation/navigation'));
-const CheckoutPage = lazy(() => import('./routes/checkout/checkout'));
-const SignInUp = lazy(() => import('./routes/sign-in-up/signInUp'));
 const Shop = lazy(() => import('./routes/shop/shop'));
+const SignInUp = lazy(() => import('./routes/sign-in-up/signInUp'));
+const CheckoutPage = lazy(() => import('./routes/checkout/checkout'));
+const ThankyouPage = lazy(() => import('./routes/thankyou/thankyou'));
 
 
 const App = () => {
@@ -21,7 +22,7 @@ const App = () => {
   useEffect(() => {
     dispatch(checkUserSession());
   }, []);
-  
+
   return (
     <Suspense fallback={<Spinner />}>
       <Routes>
@@ -30,6 +31,7 @@ const App = () => {
           <Route path='shop/*' element={<Shop />} />
           <Route path='sign-in' element={user ? <Navigate to="/" /> : <SignInUp />} />
           <Route path='checkout' element={<CheckoutPage />} />
+          <Route path='thankyou' element={<ThankyouPage />} />
         </Route>
       </Routes>
     </Suspense>

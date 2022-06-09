@@ -40,6 +40,7 @@ export const InvertedButton = styled(BaseButton)`
   background-color: white;
   color: black;
   border: 1px solid black;
+  letter-spacing: 0;
   &:hover {
     background-color: black;
     color: white;

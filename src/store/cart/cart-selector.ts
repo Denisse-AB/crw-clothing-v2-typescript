@@ -14,6 +14,11 @@ export const selectIsHidden = createSelector(
   (cart) => cart.isHidden
 )
 
+export const selectIsClientSecret = createSelector(
+  [selectCartReducer],
+  (cart) => cart.clientSecret
+)
+
 export const selectCartCount = createSelector(
   [selectCartItems],
   (cartItems) => cartItems.reduce((total, cartItem) =>
