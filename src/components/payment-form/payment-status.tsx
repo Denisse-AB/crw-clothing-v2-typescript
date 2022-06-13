@@ -28,9 +28,9 @@ const PaymentStatus = () => {
         switch (paymentIntent.status) {
           case 'succeeded':
             // Clear the whole cart
-            setMessage('Success! Payment received.');
             dispatch(setCartItems([]));
             dispatch(stripeSecretAction(null));
+            setMessage('Success! Payment received.');
             break;
 
           case 'processing':
@@ -40,13 +40,13 @@ const PaymentStatus = () => {
           case 'requires_payment_method':
             // Redirect your user back to your payment page to attempt collecting
             // payment again
-            setMessage('Payment failed. Please try another payment method.');
             navigate(-1);
+            setMessage('Payment failed. Please try another payment method.');
             break;
 
           default:
-            setMessage('Something went wrong.');
             navigate(-1);
+            setMessage('Something went wrong.');
             break;
         }
       });
