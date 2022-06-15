@@ -5,7 +5,7 @@ import { CartItem } from "./cart-types";
 export type CartState = {
   readonly isHidden: boolean,
   readonly cartItems: CartItem[],
-  readonly clientSecret: any | null
+  readonly clientSecret: string | null
 };
 
 export const CART_INITIAL_STATE: CartState  = {
