@@ -22,7 +22,6 @@ const App = () => {
 
   useEffect(() => {
     dispatch(checkUserSession());
-    dispatch(stripeSecretAction(null));
   }, []);
 
   return (
