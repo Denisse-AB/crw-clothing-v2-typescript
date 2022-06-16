@@ -6,7 +6,6 @@ import { checkUserSession } from './store/user/user-actions';
 
 import Spinner from "./components/spinner/spinner";
 import { selectCurrentUser } from "./store/user/user-selector";
-import { stripeSecretAction } from "./store/cart/cart-actions";
 
 const Home = lazy(() => import('./routes/home'));
 const Navigation = lazy(() => import('./routes/navigation/navigation'));

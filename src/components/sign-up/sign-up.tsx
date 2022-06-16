@@ -48,7 +48,6 @@ const SignUp = () => {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
-    // console.log(event.target) will pass the complete element
     setFormFields({...formFields, [name]: value })
   }
 

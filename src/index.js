@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-// import { UserProvider } from './context/user-context';
-// import { CartProvider } from './context/cart-context';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';

@@ -1,7 +1,15 @@
-import './category-item.scss'
+import './category-item.scss';
 
-const CategoryItem = ({ category }) => {
-     const { imageUrl, title } = category;
+type Category = {
+  category: {
+    imageUrl: string,
+    title: string
+  }
+}
+
+const CategoryItem = ({ category }: Category) => {
+  const { imageUrl, title } = category;
+
   return (
     <div className='category-container'>
       <div

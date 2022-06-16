@@ -2,10 +2,19 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { selectCartItems } from '../../store/cart/cart-selector';
 import { removeItemFromCart, clearItemFromCart, addItemToCart } from '../../store/cart/cart-actions';
-
 import './checkout-item.scss';
 
-const CheckoutItem = ({cartItem}) => {
+type CartItem = {
+  cartItem: {
+    id: number,
+    name: string,
+    price: number,
+    imageUrl: string,
+    quantity: number
+  }
+}
+
+const CheckoutItem = ({cartItem}: CartItem) => {
   const { name, price, imageUrl, quantity } = cartItem;
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
@@ -34,5 +43,4 @@ const CheckoutItem = ({cartItem}) => {
     </div>
   );
 }
-// onClick={() => addItemToCart(cartItem)
 export default CheckoutItem;
