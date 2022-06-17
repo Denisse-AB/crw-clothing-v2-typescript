@@ -1,14 +1,14 @@
 # Crown Clothing Store 2022
 
--Typescript
--Stripe
--Styled components
+- Typescript
+- Stripe
+- Styled components
 
 ## Setup
 
--Make a new directory
--cd to your new directory
--Clone repository
+- Make a new directory
+- cd to your new directory
+- Clone repository
 
 ```javascript
 git clone https://github.com/Denisse-AB/crw-clothing-v2-typescript.git
@@ -20,7 +20,7 @@ git clone https://github.com/Denisse-AB/crw-clothing-v2-typescript.git
 npm install
 ```
 
--Go to .env.example rename it to .env and fill the variables.
+- Go to .env.example rename it to .env and fill the variables.
 
 ## Learn More
 
