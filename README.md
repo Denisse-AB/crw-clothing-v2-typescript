@@ -6,7 +6,7 @@
 
 ## Setup
 
-- [Fork if you want a copy of this project](https://docs.github.com/es/get-started/quickstart/fork-a-repo).
+- [Fork if you want a copy of this project](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
 - Make a new directory in your computer
 - cd to your new directory
 - Clone repository
