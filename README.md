@@ -20,6 +20,7 @@ git clone https://github.com/<your-github-username>/crw-clothing-v2-typescript.g
 
 ```javascript
 npm install
+npm start
 ```
 
 - Go to .env.example rename it to .env and fill the variables.
