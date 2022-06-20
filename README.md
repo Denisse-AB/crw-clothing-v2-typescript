@@ -6,13 +6,15 @@
 
 ## Setup
 
-- Make a new directory
+- [Fork if you want a copy of this project](https://docs.github.com/es/get-started/quickstart/fork-a-repo).
+- Make a new directory in your computer
 - cd to your new directory
 - Clone repository
 
 ```javascript
-git clone https://github.com/Denisse-AB/crw-clothing-v2-typescript.git
+git clone https://github.com/<your-github-username>/crw-clothing-v2-typescript.git
 ```
+- cd to crw-clothing-v2-typescript
 
 ### Run npm install
 
