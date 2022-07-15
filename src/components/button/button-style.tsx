@@ -21,6 +21,7 @@ export const BaseButton = styled.button`
   justify-content: center;
   align-items: center;
   &:hover {
+    letter-spacing: 0;
     background-color: white;
     color: black;
     border: 1px solid black;

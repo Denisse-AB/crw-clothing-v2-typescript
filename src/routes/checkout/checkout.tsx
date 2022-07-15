@@ -6,7 +6,9 @@ import {
 } from "../../store/cart/cart-selector";
 
 import CheckoutItem from "../../components/checkout-item/checkout-item";
-import PaymentForm from "../../components/payment-form/payment-form";
+// import PaymentForm from "../../components/payment-form/payment-form";
+
+import './checkout.scss'
 
 const Checkout = () => {
   const cartItems = useSelector(selectCartItems);
@@ -34,9 +36,10 @@ const Checkout = () => {
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <span>Total: ${cartTotal}</span>
+      <span className="total">Total: ${cartTotal}</span>
 
-      <PaymentForm />
+      {/* Activate when stripe netlify is ready */}
+      {/* <PaymentForm /> */}
     </div>
   );
 };

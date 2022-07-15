@@ -1,9 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# my payment form components
+# payment form components for stripe
 checkout.component.tsx
 payment-status.component.tsx
 payment-form.component.tsx
+cart-dropdown.component.jsx
+payment_intent-utils.ts
 thankyou
 
 # dependencies
