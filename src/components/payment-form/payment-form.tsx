@@ -1,16 +1,29 @@
 import { useState, FormEvent } from 'react';
 import { useSelector } from 'react-redux';
+
+import { selectCartTotal } from '../../store/cart/cart-selector';
 import { selectCurrentUser } from '../../store/user/user-selector';
-import { PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { PaymentFormContainer, FormContainer, PaymentButton, StripeError } from "./payment-form-style";
+
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { StripeCardElement } from '@stripe/stripe-js';
+
+import { PaymentFormContainer, FormContainer, PaymentButton } from "./payment-form-style";
+
 import { BUTTON_TYPE_CLASSES } from '../button/button';
 
+const ifValidCardElement = (
+  card: StripeCardElement | null
+): card is StripeCardElement => card !== null;
+
 const PaymentForm = () => {
+  /*
+    Payment form using netlify functions
+  */
   const elements = useElements();
   const stripe = useStripe();
+  const amount = useSelector(selectCartTotal);
   const user = useSelector(selectCurrentUser);
   const [isProcessingPayment, setIsProcessingPayment ] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<any | null>(null);
 
   const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,47 +34,47 @@ const PaymentForm = () => {
 
     setIsProcessingPayment(true);
 
-    const {error} = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: 'http://localhost:3000/thankyou/',
-        payment_method_data: {
-          billing_details: {
-            name: user ? user.displayName : 'Guest',
-            email: 'example@gmail.com',
-            phone: '7873679090',
-            address: {
-              line1: 'Example Building #129',
-              city: 'Carolina',
-              state: 'PR',
-              postal_code: '00987',
-              country: 'US'
-            }
-          }
-        }
+    const response = await fetch('/.netlify/functions/create-payment-intent', {
+      method: 'Post',
+      headers: {
+        'Content-type': 'application/json'
       },
+      body: JSON.stringify({ amount: amount*100 }) // example amount
+    }).then((res => res.json()));
+
+     const {
+      paymentIntent: { client_secret },
+    } = response;
+
+    const cardDetails = elements.getElement(CardElement);
+    // ts guard
+    if (!ifValidCardElement((cardDetails))) return;
+
+    const paymentResult = await stripe.confirmCardPayment(client_secret, {
+      payment_method: {
+        card: cardDetails,
+        billing_details: {
+          name: user ? user.displayName : 'Guest'
+        }
+      }
     });
 
     setIsProcessingPayment(false);
 
-    if (error) {
-      // This point will only be reached if there is an immediate error when
-      // confirming the payment. Show error to your customer (for example, payment
-      // details incomplete)
-      setErrorMessage(error.message);
+    if (paymentResult.error) {
+      alert(paymentResult.error)
     } else {
-      // Your customer will be redirected to your `return_url`. For some payment
-      // methods like iDEAL, your customer will be redirected to an intermediate
-      // site first to authorize the payment, then redirected to the `return_url`.
+      if (paymentResult.paymentIntent.status === 'succeeded') {
+        alert('payment succeeded!')
+      }
     }
   }
 
   return (
     <PaymentFormContainer>
       <FormContainer onSubmit={paymentHandler}>
-        {!isProcessingPayment && <h4>Loading Stripe...</h4>}
-        <PaymentElement />
-        {errorMessage && <StripeError>{errorMessage}</StripeError>}
+        <h2>Pay with credit card</h2>
+        <CardElement />
         <PaymentButton
           isLoading={isProcessingPayment}
           buttonType={

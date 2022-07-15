@@ -1,7 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# payment form for netlify
-payment-form(copy).tsx
+# my payment form components
+checkout.component.tsx
+payment-status.component.tsx
+payment-form.component.tsx
+/thankyou
 
 # dependencies
 /node_modules
