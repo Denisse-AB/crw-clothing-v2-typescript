@@ -4,7 +4,7 @@
 checkout.component.tsx
 payment-status.component.tsx
 payment-form.component.tsx
-/thankyou
+thankyou
 
 # dependencies
 /node_modules
