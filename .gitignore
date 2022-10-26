@@ -17,7 +17,12 @@ thankyou
 /coverage
 
 # production
+/.firebase
 /build
+
+# Firebase config
+.firebaserc
+firebase.json
 
 # misc
 .DS_Store
