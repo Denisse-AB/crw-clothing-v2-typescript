@@ -19,6 +19,8 @@ thankyou
 # production
 /.firebase
 /build
+firestore.indexes.json
+firestore.rules
 
 # Firebase config
 .firebaserc
